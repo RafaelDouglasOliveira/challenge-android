@@ -52,6 +52,7 @@ public class ProductActivity extends AppCompatActivity implements ProductContrac
         }
         initListener();
         productPresenter.onStart();
+
     }
 
     private void initView() {
