@@ -6,6 +6,73 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="BaseThemeTwo" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlNormal">@android:color/black</item>
+    </style>
+
+    <style name="textLogoSobre">
+        <item name="fontFamily">@font/pacifico_regular</item>
+        <item name="android:textSize">64sp</item>
+    </style>
+
+    <style name="logoMenu">
+        <item name="fontFamily">@font/pacifico_regular</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="descricaoProduto">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="descricaoProdutoBold">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="MenuItem">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MenuDesenvolvedor">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MenuCategoria">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="NomeCategoria">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="Preco">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="DataDesenvolvimento">
+        <item name="fontFamily">@font/roboto_light</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
