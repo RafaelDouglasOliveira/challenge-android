@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".productscreen.ProductActivity">
 
     <android.support.v7.widget.Toolbar
@@ -23,18 +25,16 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         android:fillViewport="true">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
 
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
                 <ImageView
                     android:id="@+id/img_product"
@@ -44,6 +44,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_gravity="center"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/side_nav_bar" />
@@ -51,11 +52,13 @@
                 <TextView
                     android:id="@+id/txt_name_product"
                     style="@style/descricaoProdutoBold"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/img_product"
@@ -91,8 +94,9 @@
                             style="@style/Preco"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginLeft="8dp"
+
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -135,7 +139,7 @@
                 <TextView
                     android:id="@+id/txt_description"
                     style="@style/MenuCategoria"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
@@ -151,14 +155,14 @@
                     android:id="@+id/floatingActionButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-                    android:layout_marginEnd="48dp"
-                    android:layout_marginRight="48dp"
-                    android:backgroundTint="@color/warm_purple"
+                    app:backgroundTint="@color/warm_purple"
+                    android:layout_marginLeft="16dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="16dp"
                     android:clickable="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_descricao"
-                    app:srcCompat="@drawable/check_button" />
+                    app:srcCompat="@drawable/check_button"
+                    tools:layout_editor_absoluteX="307dp"
+                    tools:layout_editor_absoluteY="288dp" />
 
                 <ProgressBar
                     android:id="@+id/progressBar"
@@ -176,7 +180,6 @@
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
 
 
         </LinearLayout>
@@ -184,4 +187,4 @@
 
 
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

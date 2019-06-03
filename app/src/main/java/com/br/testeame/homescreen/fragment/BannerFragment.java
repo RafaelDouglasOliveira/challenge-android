@@ -38,6 +38,8 @@ public class BannerFragment extends Fragment {
 
             Picasso.get()
                     .load(banner.getUrlImagem())
+                    .placeholder(getActivity().getResources().getDrawable(R.drawable.logo_sobre))
+                    .error(getActivity().getResources().getDrawable(R.drawable.logo_sobre))
                     .into(imageBanner);
         }
 

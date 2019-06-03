@@ -1,5 +1,6 @@
 package com.br.testeame.categoryscreen;
 
+import com.br.testeame.Util;
 import com.br.testeame.api.Endpoint;
 import com.br.testeame.api.RetrofitConfiguration;
 import com.br.testeame.api.model.Category;
@@ -7,6 +8,10 @@ import com.br.testeame.api.model.ProductsResponse;
 
 import org.jetbrains.annotations.NotNull;
 
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,18 +55,33 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 
     private void searcheCategory() {
 
-        endpoint.getCategoryProducts(category.getId()).enqueue(new Callback<ProductsResponse>() {
-            @Override
-            public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
-                view.hiddenProgressBar();
-                view.setupProduct(response.body().getProductsResponse());
-            }
 
-            @Override
-            public void onFailure(Call<ProductsResponse> call, Throwable t) {
-                view.hiddenProgressBar();
-                view.showErroMsg(t.getMessage());
-            }
-        });
-    }
+            endpoint.getCategoryProducts(category.getId())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<ProductsResponse>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(ProductsResponse productsResponse) {
+                            view.hiddenProgressBar();
+                            view.setupProduct(productsResponse.getProductsResponse());
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            view.hiddenProgressBar();
+                            view.showErroMsg(e.getMessage());
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
+
 }

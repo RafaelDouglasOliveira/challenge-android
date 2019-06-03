@@ -16,4 +16,6 @@
     <string name="menu_about_application">Sobre o aplicativo</string>
 
     <string name="name_dev">Rafael Douglas de Oliveira</string>
+    <string name="text_value_sucess">Produto Reservado com Sucesso</string>
+    <string name="btn_ok">OK</string>
 </resources>

@@ -35,7 +35,11 @@ public class ItemBestSellerViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void build(Product product) {
-        Picasso.get().load(product.getUrlImage()).into(imagemProduct);
+        Picasso.get()
+                .load(product.getUrlImage())
+                .placeholder(itemView.getResources().getDrawable(R.drawable.logo_sobre))
+                .error(itemView.getResources().getDrawable(R.drawable.logo_sobre))
+                .into(imagemProduct);
         txtDescriptionProduct.setText(Html.fromHtml(product.getName()));
         if(String.valueOf(product.getPriceOf()) != null && String.valueOf(product.getPriceOf()).length() > 0) {
             txtProductOriginal.setText(Util.Companion.stringMoney(product.getPriceOf()));

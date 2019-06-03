@@ -28,7 +28,11 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     public void bind(Category category) {
 
         txtDescriptionCategory.setText(category.getDescription().trim());
-        Picasso.get().load(category.getUrlImage()).into(imageCategory);
+        Picasso.get()
+                .load(category.getUrlImage())
+                .placeholder(itemView.getResources().getDrawable(R.drawable.logo_sobre))
+                .error(itemView.getResources().getDrawable(R.drawable.logo_sobre))
+                .into(imageCategory);
 
     }
 }

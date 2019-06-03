@@ -8,13 +8,14 @@ import com.br.testeame.api.model.ProductResponse;
 
 import org.jetbrains.annotations.NotNull;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class ProductPresenter implements ProductContract.Presenter {
 
-    private ProductContract.View view;
+    public ProductContract.View view;
     private Product product;
     private Endpoint endpoint;
 
@@ -22,7 +23,7 @@ public class ProductPresenter implements ProductContract.Presenter {
     @Override
     public void onStart() {
 
-        if(this.product != null){
+        if (this.product != null) {
             this.view.setUrlImage(product.getUrlImage());
             this.view.setDescriptProduct(product.getDescription());
             this.view.setNameProduct(product.getName());
@@ -30,7 +31,7 @@ public class ProductPresenter implements ProductContract.Presenter {
             this.view.setValueOff(Util.Companion.stringMoney(product.getPriceOff()));
         }
 
-        endpoint =  RetrofitConfiguration.Companion.getRetrofitInstance().create(Endpoint.class);
+        endpoint = RetrofitConfiguration.Companion.getRetrofitInstance().create(Endpoint.class);
 
 
     }
@@ -55,21 +56,36 @@ public class ProductPresenter implements ProductContract.Presenter {
     @Override
     public void reservedProduct() {
 
+
         this.view.showProgressBar();
-        endpoint.postProduct(product.getId()).enqueue(new Callback<ProductResponse>() {
-            @Override
-            public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
-                view.hiddenProgressBar();
-                view.showDialogSucess();
-            }
 
-            @Override
-            public void onFailure(Call<ProductResponse> call, Throwable t) {
+        endpoint.postProduct(product.getId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ProductResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-                view.hiddenProgressBar();
-                view.showErroMsg(t.getMessage());
+                    }
 
-            }
-        });
-    }
+                    @Override
+                    public void onNext(ProductResponse productResponse) {
+                        view.hiddenProgressBar();
+                        view.showDialogSucess();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.hiddenProgressBar();
+                        view.showErroMsg(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+        }
 }
+

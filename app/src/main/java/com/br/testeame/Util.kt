@@ -6,10 +6,8 @@ import java.text.NumberFormat
 import java.util.*
 
 class Util {
-
-
-
     companion object {
+
         fun isConected(context: Context): Boolean {
             val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
@@ -33,7 +31,7 @@ class Util {
         fun dataNow( ): String {
             val date = Calendar.getInstance()
 
-           val  monthParam = returnMount(date[Calendar.MONTH])
+            val  monthParam = returnMount(date[Calendar.MONTH])
 
             var dayParam = date[Calendar.DAY_OF_MONTH]
 

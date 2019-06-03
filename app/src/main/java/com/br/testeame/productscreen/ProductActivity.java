@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -50,6 +49,7 @@ public class ProductActivity extends AppCompatActivity implements ProductContrac
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
         initListener();
         productPresenter.onStart();
 
@@ -64,7 +64,7 @@ public class ProductActivity extends AppCompatActivity implements ProductContrac
         txtDescription = findViewById(R.id.txt_description);
         floatingActionButton = findViewById(R.id.floatingActionButton);
         progressBar = findViewById(R.id.progressBar);
-        toolbar.setTitle("");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
     }
 
@@ -113,7 +113,10 @@ public class ProductActivity extends AppCompatActivity implements ProductContrac
     @Override
     public void setUrlImage(@NotNull String url) {
 
-        Picasso.get().load(url).into(imgProduct);
+        Picasso.get().load(url)
+                .placeholder(getResources().getDrawable(R.drawable.logo_sobre))
+                .error(getResources().getDrawable(R.drawable.logo_sobre))
+                .into(imgProduct);
 
     }
 
